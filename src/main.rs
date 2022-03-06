@@ -1,3 +1,5 @@
+#![windows_subsystem = "windows"]
+
 use crate::app::Editor;
 
 mod app;
