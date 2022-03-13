@@ -91,7 +91,7 @@ fn initialize_menu() -> MenuBar {
     file_menu.add_separator();
     file_menu.add_menuitem(close_item);
     file_menu.add_separator();
-    file_menu.add_menu(export_menu);
+    file_menu.add_menu(export_menu.clone());
     export_menu.add_menuitem(export_to_zip_item);
     file_menu.add_separator();
     file_menu.add_menuitem(exit_item);
