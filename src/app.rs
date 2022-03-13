@@ -41,9 +41,9 @@ impl Application for Editor {
         let edit = TextEdit::new(Attributes::new(WS_NORMAL, "This is Xink!!!!".to_string(), "".to_string(),750, 600, 0, 0), frame);
 
         edit.show();
-        frame.set_menu(initialize_menu());
+        frame.clone().set_menu(initialize_menu());
         frame.show();
-        let about = AboutDialog::new(*frame);
+        let about = AboutDialog::new(frame.clone());
         create_dialog(Box::new(about));
     }
 

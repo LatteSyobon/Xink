@@ -22,7 +22,7 @@ impl Dialog for AboutDialog {
     }
 
     fn frame(&self) -> Frame {
-        self.frame
+        self.frame.clone()
     }
 
     fn ui(&self, frame: Frame) {
