@@ -1,5 +1,6 @@
 use nxui::io::storage::Storage;
 use nxui::natives_and_messaging::*;
+use nxui::widget::menu::Menu;
 use nxui::widget::menubar::MenuBar;
 use nxui::widget::menuitem::MenuItem;
 use nxui::widget::textedit::TextEdit;
@@ -25,7 +26,7 @@ impl Application for Editor {
     }
 
     fn attributes(&self) -> Attributes {
-        Attributes::new(WS_NORMAL, "Xink".to_string(), 750, 600, 10, 10)
+        Attributes::new(WS_NORMAL, "Xink".to_string(), "io.github.lattesyobon.xink".to_string(),750, 600, 10, 10)
     }
 
     fn is_child_window(&self) -> bool {
@@ -36,13 +37,13 @@ impl Application for Editor {
         println!("Startup");
     }
 
-    fn ui(&self, frame: Frame) {
-        let edit = TextEdit::new(Attributes::new(WS_NORMAL, "This is Xink!!!!".to_string(), 750, 600, 0, 0), frame);
+    fn ui(&self, frame: &Frame) {
+        let edit = TextEdit::new(Attributes::new(WS_NORMAL, "This is Xink!!!!".to_string(), "".to_string(),750, 600, 0, 0), frame);
 
         edit.show();
         frame.set_menu(initialize_menu());
         frame.show();
-        let about = AboutDialog::new(frame);
+        let about = AboutDialog::new(*frame);
         create_dialog(Box::new(about));
     }
 
@@ -60,12 +61,12 @@ fn initialize_menu() -> MenuBar {
     let help_menu = MenuItem::new("Help(&H)");
 
     // Initialize MenuItem
-    let new_item = MenuItem::new("New(&N)");
+    let new_menu = Menu::new("New(&N)");
     let open_item = MenuItem::new("Open");
     let save_item = MenuItem::new("Save");
     let save_all_item = MenuItem::new("Save All");
     let close_item = MenuItem::new("Close");
-    let export_menu = MenuItem::new("Export");
+    let export_menu = Menu::new("Export");
     let export_to_zip_item = MenuItem::new("Export to Zip");
     let exit_item = MenuItem::new("Exit");
 
@@ -78,12 +79,12 @@ fn initialize_menu() -> MenuBar {
     let about_item = MenuItem::new("About Xink");
 
     // Set Menu
-    menu_bar.add_item(file_menu);
-    menu_bar.add_item(edit_menu);
-    menu_bar.add_item(help_menu);
+    menu_bar.add_menu(file_menu.clone());
+    menu_bar.add_menu(edit_menu.clone());
+    menu_bar.add_menu(help_menu.clone());
 
     // Set MenuItem
-    file_menu.add_menu(new_item);
+    file_menu.add_menu(new_menu);
     file_menu.add_menuitem(open_item);
     file_menu.add_menuitem(save_item);
     file_menu.add_menuitem(save_all_item);
