@@ -4,6 +4,8 @@ use nxui::widget::menubar::MenuBar;
 use nxui::widget::menuitem::MenuItem;
 use nxui::widget::textedit::TextEdit;
 use nxui::window::{AdvancedOptions, Application, Attributes, Frame};
+use nxui::window::dialog::create_dialog;
+use crate::about::AboutDialog;
 
 pub struct Editor {
 
@@ -19,11 +21,11 @@ impl Editor {
 
 impl Application for Editor {
     fn app_name(&self) -> String {
-        "Xink Editor".to_string()
+        "Xink".to_string()
     }
 
     fn attributes(&self) -> Attributes {
-        Attributes::new(WS_NORMAL, "Xink Editor".to_string(), 750, 600, 10, 10)
+        Attributes::new(WS_NORMAL, "Xink".to_string(), 750, 600, 10, 10)
     }
 
     fn is_child_window(&self) -> bool {
@@ -40,6 +42,8 @@ impl Application for Editor {
         edit.show();
         frame.set_menu(initialize_menu());
         frame.show();
+        let about = AboutDialog::new(frame);
+        create_dialog(Box::new(about));
     }
 
     fn exit(&self) {
