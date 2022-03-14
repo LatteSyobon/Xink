@@ -462,9 +462,9 @@ dependencies = [
 
 [[package]]
 name = "nxui"
-version = "0.16.3"
+version = "0.16.5"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "524cd868a9802bb399f0ab5543682edce935b364af0905a4215ba19bb0e6d3a8"
+checksum = "fa05ecc2edbdd35e15c5bccc691851f1d3f23a06549c91be712534bb28e8cb79"
 dependencies = [
  "env_logger",
  "gtk",
